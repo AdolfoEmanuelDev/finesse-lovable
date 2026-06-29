@@ -29,9 +29,6 @@ function Index() {
                 params={{ id: String(p.id) }}
                 className="group relative block overflow-hidden"
               >
-                <span className="absolute left-3 top-3 z-10 bg-white px-3 py-1 text-[10px] font-semibold tracking-widest text-black">
-                  OFERTA
-                </span>
                 <img
                   src={p.image}
                   alt={p.name}
@@ -46,13 +43,23 @@ function Index() {
                   <span className="ml-2 text-white/50 line-through">{p.oldPrice}</span>
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => add(p.id)}
-                className="mt-4 w-full border border-white/80 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase transition-colors hover:bg-white hover:text-black"
-              >
-                Adicionar
-              </button>
+              {p.soldOut ? (
+                <button
+                  type="button"
+                  disabled
+                  className="mt-4 w-full border border-white/40 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-white/40 cursor-default"
+                >
+                  Esgotado
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => add(p.id)}
+                  className="mt-4 w-full border border-white/80 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase transition-colors hover:bg-white hover:text-black"
+                >
+                  Adicionar
+                </button>
+              )}
             </article>
           ))}
         </div>

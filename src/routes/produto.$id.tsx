@@ -69,12 +69,7 @@ function ProductPage() {
         </div>
 
         <div className="flex flex-col">
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="text-2xl font-bold uppercase tracking-wide md:text-3xl">{product.name}</h1>
-            <span className="bg-white px-3 py-1 text-[10px] font-semibold tracking-widest text-black">
-              OFERTA
-            </span>
-          </div>
+          <h1 className="text-2xl font-bold uppercase tracking-wide md:text-3xl">{product.name}</h1>
           <div className="mt-4">
             <span className="text-2xl font-semibold">{product.price}</span>
             <span className="ml-3 text-white/50 line-through">{product.oldPrice}</span>
@@ -86,21 +81,33 @@ function ProductPage() {
             ))}
           </div>
 
-          <button
-            type="button"
-            onClick={() => add(product.id)}
-            className="mt-8 w-full bg-white py-4 text-[12px] font-semibold tracking-[0.25em] uppercase text-black transition-opacity hover:opacity-90"
-          >
-            Adicionar ao Carrinho
-          </button>
-          <a
-            href={product.buyNowUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-3 w-full border border-white py-4 text-center text-[12px] font-semibold tracking-[0.25em] uppercase transition-colors hover:bg-white hover:text-black"
-          >
-            Comprar Agora
-          </a>
+          {product.soldOut ? (
+            <button
+              type="button"
+              disabled
+              className="mt-8 w-full border border-white/40 py-4 text-[12px] font-semibold tracking-[0.25em] uppercase text-white/40 cursor-default"
+            >
+              Esgotado
+            </button>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={() => add(product.id)}
+                className="mt-8 w-full bg-white py-4 text-[12px] font-semibold tracking-[0.25em] uppercase text-black transition-opacity hover:opacity-90"
+              >
+                Adicionar ao Carrinho
+              </button>
+              <a
+                href={product.buyNowUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 w-full border border-white py-4 text-center text-[12px] font-semibold tracking-[0.25em] uppercase transition-colors hover:bg-white hover:text-black"
+              >
+                Comprar Agora
+              </a>
+            </>
+          )}
 
           <hr className="my-8 border-white/15" />
 
