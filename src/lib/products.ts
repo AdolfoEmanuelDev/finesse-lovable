@@ -7,6 +7,7 @@ export type Product = {
   gallery: string[];
   description: string[];
   buyNowUrl: string;
+  soldOut?: boolean;
 };
 
 const img = (path: string) =>
