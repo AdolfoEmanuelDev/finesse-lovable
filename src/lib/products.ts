@@ -7,6 +7,7 @@ export type Product = {
   gallery: string[];
   description: string[];
   buyNowUrl: string;
+  soldOut?: boolean;
 };
 
 const img = (path: string) =>
@@ -69,6 +70,7 @@ export const products: Product[] = [
     ],
     description: ["Tricot cable knit.", "Modelagem regular", "Size M"],
     buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
+    soldOut: true,
   },
   {
     id: 4,
