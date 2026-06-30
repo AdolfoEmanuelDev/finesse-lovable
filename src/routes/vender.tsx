@@ -22,7 +22,7 @@ export const Route = createFileRoute("/vender")({
   component: VenderPage,
 });
 
-const WHATS_NUMBER = "5511999999999"; // ajuste para o número real
+const WHATS_NUMBER = "91920030501";
 
 function VenderPage() {
   const [form, setForm] = useState({
