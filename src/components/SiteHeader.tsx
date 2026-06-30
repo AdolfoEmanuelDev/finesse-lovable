@@ -16,7 +16,13 @@ export function SiteHeader() {
           decoding="async"
         />
       </Link>
-      <nav className="flex items-center gap-6 text-[11px] tracking-[0.2em] text-white md:gap-10">
+      <nav className="flex items-center gap-4 text-[11px] tracking-[0.2em] text-white md:gap-8">
+        <Link to="/como-funciona" className="hidden md:inline hover:opacity-70 transition-opacity">
+          COMO FUNCIONA
+        </Link>
+        <Link to="/vender" className="hidden md:inline hover:opacity-70 transition-opacity">
+          VENDER
+        </Link>
         <Link to="/termos" className="hover:opacity-70 transition-opacity">
           TERMOS
         </Link>
