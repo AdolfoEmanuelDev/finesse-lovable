@@ -65,7 +65,7 @@ function VenderPage() {
       <main className="mx-auto max-w-2xl px-6 pb-24 pt-12 md:pt-20">
         <h1
           className="text-3xl md:text-5xl tracking-wide text-center"
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+          style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
         >
           Vender sua peça
         </h1>
