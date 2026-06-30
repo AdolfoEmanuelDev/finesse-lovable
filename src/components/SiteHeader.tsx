@@ -9,21 +9,29 @@ export function SiteHeader() {
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const lastY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
     lastY.current = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
+    const update = () => {
+      const y = Math.max(0, window.scrollY);
       const delta = y - lastY.current;
-      setScrolled(y > 8);
-      if (y < 80) {
+      setScrolled(y > 40);
+      if (y < 120) {
         setHidden(false);
-      } else if (delta > 6) {
+      } else if (delta > 8) {
         setHidden(true);
-      } else if (delta < -6) {
+      } else if (delta < -8) {
         setHidden(false);
       }
       lastY.current = y;
+      ticking.current = false;
+    };
+    const onScroll = () => {
+      if (!ticking.current) {
+        ticking.current = true;
+        window.requestAnimationFrame(update);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -33,21 +41,16 @@ export function SiteHeader() {
     <header
       className={[
         "sticky top-0 z-50 flex items-center justify-between px-6 py-6 md:px-16 md:py-8",
-        "transition-[transform,background-color,backdrop-filter,padding] duration-300 ease-out will-change-transform",
+        "transition-[transform,background-color,backdrop-filter] duration-300 ease-out will-change-transform",
         hidden ? "-translate-y-full" : "translate-y-0",
-        scrolled
-          ? "bg-black/70 backdrop-blur-md py-3 md:py-4"
-          : "bg-transparent",
+        scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent",
       ].join(" ")}
     >
       <Link to="/" aria-label="Finesse Club — Início" className="flex items-center">
         <img
           src={logoAsset.url}
           alt="Finesse Club"
-          className={[
-            "w-auto transition-[height] duration-300 ease-out",
-            scrolled ? "h-10 md:h-12" : "h-16 md:h-20",
-          ].join(" ")}
+          className="h-12 w-auto md:h-16"
           loading="eager"
           decoding="async"
         />
