@@ -40,7 +40,7 @@ export function SiteHeader() {
   return (
     <header
       className={[
-        "fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-6 md:px-16 md:py-8",
+        "sticky top-0 z-50 flex items-center justify-between px-6 py-6 md:px-16 md:py-8",
         "transition-[transform,background-color,backdrop-filter] duration-300 ease-out will-change-transform",
         hidden ? "-translate-y-full" : "translate-y-0",
         scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent",
