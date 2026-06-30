@@ -1,17 +1,53 @@
 import { Link } from "@tanstack/react-router";
 import { ShoppingCart } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/lib/cart";
 import logoAsset from "@/assets/logo-fc.webp.asset.json";
 
 export function SiteHeader() {
   const { count } = useCart();
+  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const lastY = useRef(0);
+
+  useEffect(() => {
+    lastY.current = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY.current;
+      setScrolled(y > 8);
+      if (y < 80) {
+        setHidden(false);
+      } else if (delta > 6) {
+        setHidden(true);
+      } else if (delta < -6) {
+        setHidden(false);
+      }
+      lastY.current = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="flex items-center justify-between px-6 py-6 md:px-16 md:py-8">
+    <header
+      className={[
+        "sticky top-0 z-50 flex items-center justify-between px-6 py-6 md:px-16 md:py-8",
+        "transition-[transform,background-color,backdrop-filter,padding] duration-300 ease-out will-change-transform",
+        hidden ? "-translate-y-full" : "translate-y-0",
+        scrolled
+          ? "bg-black/70 backdrop-blur-md py-3 md:py-4"
+          : "bg-transparent",
+      ].join(" ")}
+    >
       <Link to="/" aria-label="Finesse Club — Início" className="flex items-center">
         <img
           src={logoAsset.url}
           alt="Finesse Club"
-          className="h-16 w-auto md:h-20"
+          className={[
+            "w-auto transition-[height] duration-300 ease-out",
+            scrolled ? "h-10 md:h-12" : "h-16 md:h-20",
+          ].join(" ")}
           loading="eager"
           decoding="async"
         />

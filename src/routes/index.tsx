@@ -48,7 +48,7 @@ function Index() {
         />
         <h1
           className="mt-8 max-w-2xl text-2xl leading-tight tracking-wide md:text-4xl"
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+          style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
         >
           Curadoria de luxo masculino. Peças originais e autenticadas.
         </h1>

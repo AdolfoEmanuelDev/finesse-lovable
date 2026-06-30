@@ -14,7 +14,7 @@ export function SiteFooter() {
       <section className="border-b border-white/10 px-6 py-12 text-center md:px-16 md:py-16">
         <h2
           className="text-2xl md:text-4xl tracking-wide"
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+          style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
         >
           Entre no grupo VIP e veja os próximos drops antes de todo mundo.
         </h2>
