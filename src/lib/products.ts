@@ -6,9 +6,19 @@ export type Product = {
   image: string;
   gallery: string[];
   description: string[];
+  details?: {
+    condicao: string;
+    modelagem: string;
+    tamanho: string;
+    material: string;
+  };
   buyNowUrl: string;
   soldOut?: boolean;
 };
+
+export const FINESSE_WHATSAPP =
+  "https://wa.me/5511999999999?text=Ol%C3%A1%20Finesse%20Club%2C%20quero%20vender%20uma%20pe%C3%A7a.";
+export const FINESSE_VIP_GROUP = "https://chat.whatsapp.com/";
 
 const img = (path: string) =>
   `https://finesseclub.com.br/_next/image?url=${encodeURIComponent(path)}&w=1920&q=75`;
@@ -20,12 +30,9 @@ export const products: Product[] = [
     price: "R$ 555,00",
     oldPrice: "R$ 650,00",
     image: img(
-      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-1-resized-1769631761757.jpg?width=8000&height=8000&resize=contain",
+      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/tjust-detelhe1-resized-1766999555080.jpeg?width=8000&height=8000&resize=contain",
     ),
     gallery: [
-      img(
-        "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-1-resized-1769631761757.jpg?width=8000&height=8000&resize=contain",
-      ),
       img(
         "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/tjust-detelhe1-resized-1766999555080.jpeg?width=8000&height=8000&resize=contain",
       ),
@@ -36,7 +43,19 @@ export const products: Product[] = [
         "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/TAG-tjust-resized-1766999555084.jpeg?width=8000&height=8000&resize=contain",
       ),
     ],
-    description: ["Pouquíssimo uso. (DS)", "Modelagem relaxed / oversized", "Size S"],
+    description: [
+      "Seminovo — usado 2-3 vezes, sem marcas visíveis de desgaste.",
+      "Modelagem relaxed / oversized, cai folgado no corpo.",
+      "Size S (equivale a M brasileiro).",
+      "100% algodão.",
+      "Esta peça passou pela inspeção de autenticidade da Finesse Club.",
+    ],
+    details: {
+      condicao: "Seminovo — usado 2-3 vezes, sem marcas visíveis",
+      modelagem: "Relaxed / oversized",
+      tamanho: "S (equivale a M BR)",
+      material: "100% algodão",
+    },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
   },
   {
@@ -52,7 +71,19 @@ export const products: Product[] = [
         "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-2-resized-1769631761756.jpg?width=8000&height=8000&resize=contain",
       ),
     ],
-    description: ["Pouquíssimo uso.", "Modelagem regular", "Size M"],
+    description: [
+      "Seminovo — pouquíssimo uso, sem sinais visíveis de desgaste.",
+      "Modelagem regular, caimento alinhado ao corpo.",
+      "Size M (equivale a M brasileiro).",
+      "Algodão premium.",
+      "Esta peça passou pela inspeção de autenticidade da Finesse Club.",
+    ],
+    details: {
+      condicao: "Seminovo — pouquíssimo uso",
+      modelagem: "Regular",
+      tamanho: "M (equivale a M BR)",
+      material: "Algodão premium",
+    },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
   },
   {
@@ -68,7 +99,19 @@ export const products: Product[] = [
         "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-3-1769631761346.jpg?width=8000&height=8000&resize=contain",
       ),
     ],
-    description: ["Tricot cable knit.", "Modelagem regular", "Size M"],
+    description: [
+      "Tricot cable knit em ótimo estado.",
+      "Modelagem regular, caimento estruturado.",
+      "Size M (equivale a M brasileiro).",
+      "Mistura de lã e algodão.",
+      "Esta peça passou pela inspeção de autenticidade da Finesse Club.",
+    ],
+    details: {
+      condicao: "Ótimo estado",
+      modelagem: "Regular",
+      tamanho: "M (equivale a M BR)",
+      material: "Lã e algodão",
+    },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
     soldOut: true,
   },
@@ -85,7 +128,19 @@ export const products: Product[] = [
         "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-4-resized-1769631761761.jpg?width=8000&height=8000&resize=contain",
       ),
     ],
-    description: ["100% pima cotton.", "Modelagem regular", "Size M"],
+    description: [
+      "Seminovo — usado poucas vezes, em excelente estado.",
+      "Modelagem regular, caimento clássico.",
+      "Size M (equivale a M brasileiro).",
+      "100% Pima Cotton.",
+      "Esta peça passou pela inspeção de autenticidade da Finesse Club.",
+    ],
+    details: {
+      condicao: "Seminovo — excelente estado",
+      modelagem: "Regular",
+      tamanho: "M (equivale a M BR)",
+      material: "100% Pima Cotton",
+    },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
   },
 ];

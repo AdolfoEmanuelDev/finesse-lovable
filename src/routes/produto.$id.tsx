@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
+import { ShieldCheck } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
 import { getProduct } from "@/lib/products";
 
@@ -8,7 +10,9 @@ export const Route = createFileRoute("/produto/$id")({
   head: ({ params }) => {
     const p = getProduct(Number(params.id));
     const title = p ? `${p.name} — Finesse Club` : "Produto — Finesse Club";
-    const desc = p ? `${p.name} por ${p.price}. Frete para todo o Brasil.` : "Produto Finesse Club.";
+    const desc = p
+      ? `${p.name} por ${p.price}. Autenticidade verificada. Frete para todo o Brasil.`
+      : "Produto Finesse Club.";
     return {
       meta: [
         { title },
@@ -45,12 +49,19 @@ function ProductPage() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="min-h-screen bg-black text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <div
+      className="min-h-screen bg-black text-white"
+      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+    >
       <SiteHeader />
       <main className="mx-auto grid max-w-6xl gap-10 px-6 pb-24 pt-8 md:grid-cols-2 md:gap-16 md:pt-16">
         <div>
           <div className="overflow-hidden bg-neutral-900">
-            <img src={product.gallery[active]} alt={product.name} className="aspect-square w-full object-cover" />
+            <img
+              src={product.gallery[active]}
+              alt={product.name}
+              className="aspect-square w-full object-cover"
+            />
           </div>
           {product.gallery.length > 1 && (
             <div className="mt-3 grid grid-cols-4 gap-3">
@@ -61,7 +72,11 @@ function ProductPage() {
                   onClick={() => setActive(i)}
                   className={`overflow-hidden border ${i === active ? "border-white" : "border-transparent opacity-70"}`}
                 >
-                  <img src={g} alt={`${product.name} ${i}`} className="aspect-square w-full object-cover" />
+                  <img
+                    src={g}
+                    alt={`${product.name} ${i}`}
+                    className="aspect-square w-full object-cover"
+                  />
                 </button>
               ))}
             </div>
@@ -75,11 +90,47 @@ function ProductPage() {
             <span className="ml-3 text-white/50 line-through">{product.oldPrice}</span>
           </div>
 
-          <div className="mt-6 space-y-1 text-sm text-white/85">
-            {product.description.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
+          {/* Authenticity badge */}
+          <div className="mt-5 flex flex-col gap-1 border border-white/15 bg-white/5 px-4 py-3">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4" strokeWidth={1.5} />
+              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase">
+                Autenticidade verificada pela Finesse Club
+              </span>
+            </div>
+            <span className="text-[11px] text-white/60">
+              Inspecionamos cada peça antes de colocar no catálogo.
+            </span>
           </div>
+
+          {product.details && (
+            <dl className="mt-6 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+              <div>
+                <dt className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/50">
+                  Condição
+                </dt>
+                <dd className="mt-1 text-white/90">{product.details.condicao}</dd>
+              </div>
+              <div>
+                <dt className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/50">
+                  Modelagem
+                </dt>
+                <dd className="mt-1 text-white/90">{product.details.modelagem}</dd>
+              </div>
+              <div>
+                <dt className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/50">
+                  Tamanho
+                </dt>
+                <dd className="mt-1 text-white/90">{product.details.tamanho}</dd>
+              </div>
+              <div>
+                <dt className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white/50">
+                  Material
+                </dt>
+                <dd className="mt-1 text-white/90">{product.details.material}</dd>
+              </div>
+            </dl>
+          )}
 
           {product.soldOut ? (
             <button
@@ -127,6 +178,7 @@ function ProductPage() {
           </div>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }
