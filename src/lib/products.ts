@@ -20,8 +20,8 @@ export const FINESSE_WHATSAPP =
   "https://wa.me/91920030501?text=Ol%C3%A1%20Finesse%20Club%2C%20quero%20vender%20uma%20pe%C3%A7a.";
 export const FINESSE_VIP_GROUP = "https://chat.whatsapp.com/DBH3ZZJW84F8oDZx37Jas5";
 
-const img = (path: string) =>
-  `https://finesseclub.com.br/_next/image?url=${encodeURIComponent(path)}&w=1920&q=75`;
+const img = (path: string) => path;
+
 
 export const products: Product[] = [
   {
