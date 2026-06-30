@@ -50,7 +50,7 @@ function Index() {
           className="mt-8 max-w-2xl text-2xl leading-tight tracking-wide md:text-4xl"
           style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
         >
-          Curadoria de luxo masculino. Peças originais e autenticadas.
+          Curadoria de Luxo<br />&nbsp;Peças originais e autenticadas.
         </h1>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:gap-4">
           <a
