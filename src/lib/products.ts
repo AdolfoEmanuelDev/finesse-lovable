@@ -51,7 +51,7 @@ export const products: Product[] = [
       "Esta peça passou pela inspeção de autenticidade da Finesse Club.",
     ],
     details: {
-      condicao: "Seminovo — Otimo Estado",
+      condicao: "Seminovo — Excelente estado",
       modelagem: "Relaxed / oversized",
       tamanho: "S (equivale a P BR)",
       material: "100% algodão",
