@@ -50,7 +50,7 @@ function VenderPage() {
       `Valor desejado: ${form.valor}`,
     ];
     const url = `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(url, "_blank", "noreferrer");
+    window.location.href = url;
   }
 
   const inputCls =
