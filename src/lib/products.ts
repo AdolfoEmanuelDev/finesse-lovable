@@ -141,7 +141,7 @@ export const products: Product[] = [
       tamanho: "M (equivale a M BR)",
       material: "100% Pima Cotton",
     },
-    buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
+    buyNowUrl: "https://seguro.finesseclub.com.br/r/540WADO1SJ",
   },
 ];
 
