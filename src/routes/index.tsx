@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
-import { products, FINESSE_WHATSAPP } from "@/lib/products";
+import { products } from "@/lib/products";
 import logoAsset from "@/assets/logo-fc.webp.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -59,14 +59,12 @@ function Index() {
           >
             Ver peças disponíveis
           </a>
-          <a
-            href={FINESSE_WHATSAPP}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/vender"
             className="border border-white px-8 py-4 text-[11px] font-semibold tracking-[0.25em] uppercase transition-colors hover:bg-white hover:text-black"
           >
             Vender minha peça
-          </a>
+          </Link>
         </div>
       </section>
 
