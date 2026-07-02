@@ -13,8 +13,18 @@ export type Product = {
     material: string;
   };
   buyNowUrl: string;
+  sku?: string;
   soldOut?: boolean;
 };
+
+export const YAMPI_ALIAS = "finesseclub";
+export function buildYampiCartUrl(items: { sku: string; qty: number }[]) {
+  const params = items
+    .filter((i) => i.sku)
+    .map((i) => `skus[${encodeURIComponent(i.sku)}]=${i.qty}`)
+    .join("&");
+  return `https://seguro.${YAMPI_ALIAS}.com.br/carrinho?${params}`;
+}
 
 export const FINESSE_WHATSAPP =
   "https://wa.me/91920030501?text=Ol%C3%A1%20Finesse%20Club%2C%20quero%20vender%20uma%20pe%C3%A7a.";
@@ -57,6 +67,7 @@ export const products: Product[] = [
       material: "100% algodão",
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
+    sku: "64SM3QLK3",
   },
   {
     id: 2,
@@ -85,6 +96,7 @@ export const products: Product[] = [
       material: "100%Algodão",
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/MPMGCJXPW0",
+    sku: "4GDZSPUQP",
   },
   {
     id: 3,
@@ -142,6 +154,7 @@ export const products: Product[] = [
       material: "100% Pima Cotton",
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/540WADO1SJ",
+    sku: "8VL8MU4LJ",
   },
 ];
 
