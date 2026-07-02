@@ -13,8 +13,18 @@ export type Product = {
     material: string;
   };
   buyNowUrl: string;
+  sku?: string;
   soldOut?: boolean;
 };
+
+export const YAMPI_ALIAS = "finesseclub";
+export function buildYampiCartUrl(items: { sku: string; qty: number }[]) {
+  const params = items
+    .filter((i) => i.sku)
+    .map((i) => `skus[${encodeURIComponent(i.sku)}]=${i.qty}`)
+    .join("&");
+  return `https://seguro.${YAMPI_ALIAS}.com.br/carrinho?${params}`;
+}
 
 export const FINESSE_WHATSAPP =
   "https://wa.me/91920030501?text=Ol%C3%A1%20Finesse%20Club%2C%20quero%20vender%20uma%20pe%C3%A7a.";
