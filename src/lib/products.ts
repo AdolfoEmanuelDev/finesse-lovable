@@ -67,6 +67,7 @@ export const products: Product[] = [
       material: "100% algodão",
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
+    sku: "64SM3QLK3",
   },
   {
     id: 2,
@@ -95,6 +96,7 @@ export const products: Product[] = [
       material: "100%Algodão",
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/MPMGCJXPW0",
+    sku: "4GDZSPUQP",
   },
   {
     id: 3,
@@ -152,6 +154,7 @@ export const products: Product[] = [
       material: "100% Pima Cotton",
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/540WADO1SJ",
+    sku: "8VL8MU4LJ",
   },
 ];
 
