@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { useCart } from "@/lib/cart";
-import { centsToPrice, getProduct, priceToCents } from "@/lib/products";
+import { buildYampiCartUrl, centsToPrice, getProduct, priceToCents } from "@/lib/products";
 
 export const Route = createFileRoute("/carrinho")({
   head: () => ({
@@ -98,7 +98,9 @@ function CartPage() {
                   Limpar
                 </button>
                 <a
-                  href={lines[0].product.buyNowUrl}
+                  href={buildYampiCartUrl(
+                    lines.map((l) => ({ sku: l.product.sku || "", qty: l.item.qty })),
+                  )}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-black hover:opacity-90"
