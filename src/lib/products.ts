@@ -84,7 +84,7 @@ export const products: Product[] = [
       tamanho: "P (equivale a P BR)",
       material: "100%Algodão",
     },
-    buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
+    buyNowUrl: "https://seguro.finesseclub.com.br/r/MPMGCJXPW0",
   },
   {
     id: 3,
@@ -141,7 +141,7 @@ export const products: Product[] = [
       tamanho: "M (equivale a M BR)",
       material: "100% Pima Cotton",
     },
-    buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
+    buyNowUrl: "https://seguro.finesseclub.com.br/r/540WADO1SJ",
   },
 ];
 

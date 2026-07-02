@@ -98,7 +98,7 @@ function CartPage() {
                   Limpar
                 </button>
                 <a
-                  href="https://seguro.finesseclub.com.br/r/1YMS8P7GFD"
+                  href={lines[0].product.buyNowUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-black hover:opacity-90"
