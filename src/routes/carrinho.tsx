@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { SiteHeader } from "@/components/SiteHeader";
 import { useCart } from "@/lib/cart";
-import { buildYampiCartUrl, centsToPrice, getProduct, priceToCents } from "@/lib/products";
+import { centsToPrice, getProduct, priceToCents } from "@/lib/products";
+import { createYampiCheckout } from "@/lib/checkout.functions";
 
 export const Route = createFileRoute("/carrinho")({
   head: () => ({
@@ -17,10 +20,28 @@ export const Route = createFileRoute("/carrinho")({
 
 function CartPage() {
   const { items, setQty, remove, clear } = useCart();
+  const checkout = useServerFn(createYampiCheckout);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const lines = items
     .map((i) => ({ item: i, product: getProduct(i.id) }))
     .filter((l) => l.product) as { item: { id: number; qty: number }; product: NonNullable<ReturnType<typeof getProduct>> }[];
   const totalCents = lines.reduce((s, l) => s + priceToCents(l.product.price) * l.item.qty, 0);
+
+  const handleCheckout = async () => {
+    setError(null);
+    setLoading(true);
+    try {
+      const payload = lines
+        .filter((l) => l.product.sku)
+        .map((l) => ({ sku: l.product.sku as string, quantity: l.item.qty }));
+      const { url } = await checkout({ data: { items: payload } });
+      window.location.href = url;
+    } catch (e: any) {
+      setError(e?.message || "Erro ao criar checkout");
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -98,16 +119,18 @@ function CartPage() {
                   Limpar
                 </button>
                 <a
-                  href={buildYampiCartUrl(
-                    lines.map((l) => ({ sku: l.product.sku || "", qty: l.item.qty })),
-                  )}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-black hover:opacity-90"
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (!loading) handleCheckout();
+                  }}
+                  aria-disabled={loading}
+                  className={`bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-black hover:opacity-90 ${loading ? "pointer-events-none opacity-60" : ""}`}
                 >
-                  Finalizar Compra
+                  {loading ? "Processando..." : "Finalizar Compra"}
                 </a>
               </div>
+              {error && <p className="text-sm text-red-400">{error}</p>}
             </div>
           </>
         )}
