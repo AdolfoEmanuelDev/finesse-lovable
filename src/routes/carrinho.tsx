@@ -28,7 +28,7 @@ function CartPage() {
     .filter((l) => l.product) as { item: { id: number; qty: number }; product: NonNullable<ReturnType<typeof getProduct>> }[];
   const totalCents = lines.reduce((s, l) => s + priceToCents(l.product.price) * l.item.qty, 0);
 
-  const handleCheckout = async () => {
+  const handleCheckout = async (checkoutWindow?: Window | null) => {
     setError(null);
     setLoading(true);
     try {
@@ -37,12 +37,18 @@ function CartPage() {
         .map((l) => ({ sku: l.product.sku as string, quantity: l.item.qty }));
       const { url, error } = await checkout({ data: { items: payload } });
       if (error || !url) {
+        checkoutWindow?.close();
         setError(error || "URL de checkout não retornada");
         setLoading(false);
         return;
       }
-      window.location.href = url;
+      if (checkoutWindow && !checkoutWindow.closed) {
+        checkoutWindow.location.href = url;
+      } else {
+        window.open(url, "_blank");
+      }
     } catch (e: any) {
+      checkoutWindow?.close();
       setError(e?.message || "Erro ao criar checkout");
       setLoading(false);
     }
@@ -127,7 +133,7 @@ function CartPage() {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (!loading) handleCheckout();
+                    if (!loading) handleCheckout(window.open("about:blank", "_blank"));
                   }}
                   aria-disabled={loading}
                   className={`bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-black hover:opacity-90 ${loading ? "pointer-events-none opacity-60" : ""}`}
