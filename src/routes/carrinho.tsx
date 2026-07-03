@@ -35,7 +35,12 @@ function CartPage() {
       const payload = lines
         .filter((l) => l.product.sku)
         .map((l) => ({ sku: l.product.sku as string, quantity: l.item.qty }));
-      const { url } = await checkout({ data: { items: payload } });
+      const { url, error } = await checkout({ data: { items: payload } });
+      if (error || !url) {
+        setError(error || "URL de checkout não retornada");
+        setLoading(false);
+        return;
+      }
       window.location.href = url;
     } catch (e: any) {
       setError(e?.message || "Erro ao criar checkout");
