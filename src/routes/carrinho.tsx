@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { SiteHeader } from "@/components/SiteHeader";
 import { useCart } from "@/lib/cart";
-import { buildYampiCartUrl, centsToPrice, getProduct, priceToCents } from "@/lib/products";
+import { centsToPrice, getProduct, priceToCents } from "@/lib/products";
+import { createYampiCheckout } from "@/lib/checkout.functions";
 
 export const Route = createFileRoute("/carrinho")({
   head: () => ({
