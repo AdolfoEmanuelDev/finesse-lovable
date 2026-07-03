@@ -143,14 +143,14 @@ export const products: Product[] = [
     description: [
       "Seminovo — usado poucas vezes, em excelente estado.",
       "Modelagem regular, caimento clássico.",
-      "Size M (equivale a M brasileiro).",
+      "Size S (equivale a P brasileiro).",
       "100% Pima Cotton.",
       "Esta peça passou pela inspeção de autenticidade da Finesse Club.",
     ],
     details: {
       condicao: "Seminovo — excelente estado",
       modelagem: "Regular",
-      tamanho: "M (equivale a M BR)",
+      tamanho: "S (equivale a P BR)",
       material: "100% Pima Cotton",
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/540WADO1SJ",
