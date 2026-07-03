@@ -14,7 +14,7 @@ export const createYampiCheckout = createServerFn({ method: "POST" })
     return { items };
   })
   .handler(async ({ data }) => {
-    const alias = process.env.YAMPI_ALIAS || "finesseclub";
+    const alias = "finesseclub";
     const token = process.env.YAMPI_USER_TOKEN;
     const secret = process.env.YAMPI_USER_SECRET;
     if (!token || !secret) throw new Error("Yampi credentials ausentes");
