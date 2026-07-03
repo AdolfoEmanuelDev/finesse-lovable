@@ -14,10 +14,10 @@ export const createYampiCheckout = createServerFn({ method: "POST" })
     return { items };
   })
   .handler(async ({ data }) => {
-    const alias = process.env.YAMPI_ALIAS;
+    const alias = process.env.YAMPI_ALIAS || "finesseclub";
     const token = process.env.YAMPI_USER_TOKEN;
     const secret = process.env.YAMPI_USER_SECRET;
-    if (!alias || !token || !secret) throw new Error("Yampi credentials ausentes");
+    if (!token || !secret) throw new Error("Yampi credentials ausentes");
 
     const url = `https://api.dooki.com.br/v2/${alias}/checkouts`;
     const res = await fetch(url, {
