@@ -119,14 +119,15 @@ function CartPage() {
                   Limpar
                 </button>
                 <a
-                  href={buildYampiCartUrl(
-                    lines.map((l) => ({ sku: l.product.sku || "", qty: l.item.qty })),
-                  )}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-black hover:opacity-90"
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (!loading) handleCheckout();
+                  }}
+                  aria-disabled={loading}
+                  className={`bg-white px-6 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-black hover:opacity-90 ${loading ? "pointer-events-none opacity-60" : ""}`}
                 >
-                  Finalizar Compra
+                  {loading ? "Processando..." : "Finalizar Compra"}
                 </a>
               </div>
             </div>
