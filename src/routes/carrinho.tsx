@@ -42,6 +42,7 @@ function CartPage() {
         setLoading(false);
         return;
       }
+      setLoading(false);
       if (checkoutWindow && !checkoutWindow.closed) {
         checkoutWindow.location.href = url;
       } else {
