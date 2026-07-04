@@ -47,6 +47,7 @@ function CartPage() {
       } else {
         window.open(url, "_blank");
       }
+      setLoading(false);
     } catch (e: any) {
       checkoutWindow?.close();
       setError(e?.message || "Erro ao criar checkout");
