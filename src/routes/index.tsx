@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
 import { products } from "@/lib/products";
-import logoAsset from "@/assets/logo-fc.webp.asset.json";
+const logoAsset = { url: "/logo-fc.webp" };
 
 export const Route = createFileRoute("/")({
   head: () => ({

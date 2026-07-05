@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ShoppingCart } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/lib/cart";
-import logoAsset from "@/assets/logo-fc.webp.asset.json";
+const logoAsset = { url: "/logo-fc.webp" };
 
 export function SiteHeader() {
   const { count } = useCart();
