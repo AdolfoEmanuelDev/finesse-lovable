@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import logoAsset from "../assets/logo-fc.webp.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider } from "../lib/cart";
 
