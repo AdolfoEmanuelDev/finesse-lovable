@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ShoppingCart } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/lib/cart";
-const logoAsset = { url: "/logo-fc.webp" };
+import logoUrl from "@/assets/logo-fc.webp";
 
 export function SiteHeader() {
   const { count } = useCart();
@@ -48,7 +48,7 @@ export function SiteHeader() {
     >
       <Link to="/" aria-label="Finesse Club — Início" className="flex items-center">
         <img
-          src={logoAsset.url}
+          src={logoUrl}
           alt="Finesse Club"
           className="h-12 w-auto md:h-16"
           loading="eager"
