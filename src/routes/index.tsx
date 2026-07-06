@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
 import { products } from "@/lib/products";
-import logoUrl from "@/assets/logo-fc.webp";
+import { FinesseLogo } from "@/components/FinesseLogo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,12 +40,7 @@ function Index() {
 
       {/* Hero */}
       <section className="flex flex-col items-center justify-center px-6 py-20 text-center md:py-32">
-        <img
-          src={logoUrl}
-          alt="Finesse Club"
-          className="h-28 w-auto md:h-40"
-          loading="eager"
-        />
+        <FinesseLogo className="h-28 w-28 text-white md:h-40 md:w-40" />
         <h1
           className="mt-8 max-w-2xl text-2xl leading-tight tracking-wide md:text-4xl"
           style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
