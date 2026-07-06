@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
 import { products } from "@/lib/products";
-const logoAsset = { url: "/logo-fc.webp" };
+import logoUrl from "@/assets/logo-fc.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,7 +41,7 @@ function Index() {
       {/* Hero */}
       <section className="flex flex-col items-center justify-center px-6 py-20 text-center md:py-32">
         <img
-          src={logoAsset.url}
+          src={logoUrl}
           alt="Finesse Club"
           className="h-28 w-auto md:h-40"
           loading="eager"
