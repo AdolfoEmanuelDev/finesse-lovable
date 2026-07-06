@@ -78,11 +78,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Finesse Club — Luxo Masculino Autenticado" },
+      {
+        name: "description",
+        content: "Curadoria de moda masculina de luxo com peças originais e autenticadas.",
+      },
+      { name: "author", content: "Finesse Club" },
+      { property: "og:title", content: "Finesse Club — Luxo Masculino Autenticado" },
+      {
+        property: "og:description",
+        content: "Curadoria de moda masculina de luxo com peças originais e autenticadas.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
