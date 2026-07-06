@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ShoppingCart } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/lib/cart";
-import logoUrl from "@/assets/logo-fc.webp";
+import { FinesseLogo } from "@/components/FinesseLogo";
 
 export function SiteHeader() {
   const { count } = useCart();
@@ -47,13 +47,7 @@ export function SiteHeader() {
       ].join(" ")}
     >
       <Link to="/" aria-label="Finesse Club — Início" className="flex items-center">
-        <img
-          src={logoUrl}
-          alt="Finesse Club"
-          className="h-12 w-auto md:h-16"
-          loading="eager"
-          decoding="async"
-        />
+        <FinesseLogo className="h-12 w-12 text-white md:h-16 md:w-16" />
       </Link>
       <nav className="flex items-center gap-4 text-[11px] tracking-[0.2em] text-white md:gap-8">
         <Link to="/como-funciona" className="hidden md:inline hover:opacity-70 transition-opacity">

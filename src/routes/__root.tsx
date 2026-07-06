@@ -13,6 +13,9 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider } from "../lib/cart";
 
+const faviconSvg =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='black'/%3E%3Cg fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M82 74h82' stroke-width='10'/%3E%3Cpath d='M95 74v113' stroke-width='12'/%3E%3Cpath d='M78 187h82' stroke-width='10'/%3E%3Cpath d='M112 88h35c28 0 49 21 49 49s-21 50-49 50h-35' stroke-width='11'/%3E%3Cpath d='M143 73c10-18 26-29 47-33' stroke-width='8'/%3E%3Cpath d='M186 31l4 39' stroke-width='8'/%3E%3Cpath d='M166 51l40 4' stroke-width='8'/%3E%3Cpath d='M80 195c-8 11-18 17-31 18' stroke-width='7'/%3E%3Cpath d='M55 198l-7 28' stroke-width='7'/%3E%3C/g%3E%3Ccircle cx='172' cy='143' r='6' fill='white'/%3E%3C/svg%3E";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -102,8 +105,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap",
       },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/svg+xml", href: faviconSvg },
+      { rel: "shortcut icon", type: "image/svg+xml", href: faviconSvg },
     ],
   }),
 
