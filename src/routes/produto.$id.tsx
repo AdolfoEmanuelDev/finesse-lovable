@@ -4,7 +4,7 @@ import { ShieldCheck } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
-import { getProduct } from "@/lib/products";
+import { getProduct, FINESSE_WHATSAPP } from "@/lib/products";
 
 export const Route = createFileRoute("/produto/$id")({
   head: ({ params }) => {
@@ -131,6 +131,24 @@ function ProductPage() {
               </div>
             </dl>
           )}
+
+          <div className="mt-6 border border-white/15 bg-white/5 px-4 py-3">
+            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase">
+              Aviso sobre tamanhos
+            </span>
+            <p className="mt-2 text-[12px] text-white/65">
+              Peça única. Para as medidas exatas, aferidas manualmente pela equipe Finesse Club,{" "}
+              <a
+                href={FINESSE_WHATSAPP}
+                target="_blank"
+                rel="noreferrer"
+                className="underline underline-offset-4 hover:opacity-70"
+              >
+                fale com a gente no WhatsApp
+              </a>
+              .
+            </p>
+          </div>
 
           {product.soldOut ? (
             <button

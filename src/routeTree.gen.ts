@@ -13,6 +13,7 @@ import { Route as VenderRouteImport } from './routes/vender'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as CarrinhoRouteImport } from './routes/carrinho'
+import { Route as AutenticacaoRouteImport } from './routes/autenticacao'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProdutoIdRouteImport } from './routes/produto.$id'
 
@@ -36,6 +37,11 @@ const CarrinhoRoute = CarrinhoRouteImport.update({
   path: '/carrinho',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AutenticacaoRoute = AutenticacaoRouteImport.update({
+  id: '/autenticacao',
+  path: '/autenticacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +55,7 @@ const ProdutoIdRoute = ProdutoIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/autenticacao': typeof AutenticacaoRoute
   '/carrinho': typeof CarrinhoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/termos': typeof TermosRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/autenticacao': typeof AutenticacaoRoute
   '/carrinho': typeof CarrinhoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/termos': typeof TermosRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/autenticacao': typeof AutenticacaoRoute
   '/carrinho': typeof CarrinhoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/termos': typeof TermosRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/autenticacao'
     | '/carrinho'
     | '/como-funciona'
     | '/termos'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/autenticacao'
     | '/carrinho'
     | '/como-funciona'
     | '/termos'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/autenticacao'
     | '/carrinho'
     | '/como-funciona'
     | '/termos'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AutenticacaoRoute: typeof AutenticacaoRoute
   CarrinhoRoute: typeof CarrinhoRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   TermosRoute: typeof TermosRoute
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarrinhoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/autenticacao': {
+      id: '/autenticacao'
+      path: '/autenticacao'
+      fullPath: '/autenticacao'
+      preLoaderRoute: typeof AutenticacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AutenticacaoRoute: AutenticacaoRoute,
   CarrinhoRoute: CarrinhoRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   TermosRoute: TermosRoute,
@@ -166,3 +187,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
