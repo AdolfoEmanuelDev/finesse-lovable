@@ -53,6 +53,9 @@ export function SiteHeader() {
         <Link to="/como-funciona" className="hidden md:inline hover:opacity-70 transition-opacity">
           COMO FUNCIONA
         </Link>
+        <Link to="/autenticacao" className="hidden md:inline hover:opacity-70 transition-opacity">
+          AUTENTICAÇÃO
+        </Link>
         <Link to="/vender" className="hidden md:inline hover:opacity-70 transition-opacity">
           VENDER
         </Link>
