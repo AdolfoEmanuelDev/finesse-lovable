@@ -26,10 +26,12 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: async () => await getCatalog(),
   component: Index,
 });
 
 function Index() {
+  const { products } = Route.useLoaderData();
   const { add } = useCart();
   return (
     <div
