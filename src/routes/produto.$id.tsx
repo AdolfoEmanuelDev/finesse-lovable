@@ -91,7 +91,9 @@ function ProductPage() {
           <h1 className="text-2xl font-bold uppercase tracking-wide md:text-3xl">{product.name}</h1>
           <div className="mt-4">
             <span className="text-2xl font-semibold">{product.price}</span>
-            <span className="ml-3 text-white/50 line-through">{product.oldPrice}</span>
+            {product.oldPrice ? (
+              <span className="ml-3 text-white/50 line-through">{product.oldPrice}</span>
+            ) : null}
           </div>
 
           {/* Authenticity badge */}
