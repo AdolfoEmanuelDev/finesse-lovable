@@ -33,8 +33,8 @@ const etapas = [
     desc: "Serviço especializado em autenticação de peças de luxo e streetwear no Brasil.",
   },
   {
-    title: "LegitApp",
-    desc: "Plataforma internacional de legit check, usada como segunda camada de verificação.",
+    title: "LegitApp e LegitGrails",
+    desc: "Plataformas internacionais de legit check usadas como segunda camada de verificação.",
   },
   {
     title: "Curadoria manual Finesse Club",
@@ -61,9 +61,10 @@ function Autenticacao() {
         </h1>
         <p className="mt-4 max-w-2xl text-white/70">
           Nenhuma peça entra no catálogo sem passar por verificação. Trabalhamos com{" "}
-          <strong className="text-white">Auth.br</strong> e{" "}
-          <strong className="text-white">LegitApp</strong>, além da autenticação manual feita pela
-          equipe Finesse Club.
+          <strong className="text-white">Auth.br</strong>,{" "}
+          <strong className="text-white">LegitApp</strong> e{" "}
+          <strong className="text-white">LegitGrails</strong>, além da autenticação manual feita
+          pela equipe Finesse Club.
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
