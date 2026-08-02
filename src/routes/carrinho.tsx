@@ -3,7 +3,9 @@ import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { SiteHeader } from "@/components/SiteHeader";
 import { useCart } from "@/lib/cart";
-import { centsToPrice, getProduct, priceToCents } from "@/lib/products";
+import { centsToPrice, priceToCents, type Product } from "@/lib/products";
+import { getCatalog, type CatalogResult } from "@/lib/catalog.functions";
+import { findProduct } from "@/lib/catalog";
 import { createYampiCheckout } from "@/lib/checkout.functions";
 
 export const Route = createFileRoute("/carrinho")({
@@ -15,29 +17,40 @@ export const Route = createFileRoute("/carrinho")({
       { property: "og:description", content: "Revise os itens do seu carrinho e finalize a compra." },
     ],
   }),
+  loader: async () => await getCatalog(),
   component: CartPage,
 });
 
 function CartPage() {
+  const { products } = Route.useLoaderData() as CatalogResult;
   const { items, setQty, remove, clear } = useCart();
   const checkout = useServerFn(createYampiCheckout);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const lines = items
-    .map((i) => ({ item: i, product: getProduct(i.id) }))
-    .filter((l) => l.product) as { item: { id: number; qty: number }; product: NonNullable<ReturnType<typeof getProduct>> }[];
-  const totalCents = lines.reduce((s, l) => s + priceToCents(l.product.price) * l.item.qty, 0);
+    .map((i) => ({ item: i, product: findProduct(products, String(i.id)) }))
+    .filter((l) => l.product) as { item: { id: number; qty: number }; product: Product }[];
+  const available = lines.filter((l) => !l.product.soldOut);
+  const soldOutLines = lines.filter((l) => l.product.soldOut);
+  const totalCents = available.reduce((s, l) => s + priceToCents(l.product.price) * l.item.qty, 0);
 
   const handleCheckout = async (checkoutWindow?: Window | null) => {
     setError(null);
     setLoading(true);
     try {
-      const payload = lines
+      const payload = available
         .filter((l) => l.product.sku)
         .map((l) => ({ sku: l.product.sku as string, quantity: l.item.qty }));
+      if (payload.length === 0) {
+        checkoutWindow?.close();
+        setError("Nenhum item disponível no carrinho.");
+        setLoading(false);
+        return;
+      }
       const { url, error } = await checkout({ data: { items: payload } });
       if (error || !url) {
         checkoutWindow?.close();
+
         setError(error || "URL de checkout não retornada");
         setLoading(false);
         return;
@@ -88,6 +101,11 @@ function CartPage() {
                       {product.name}
                     </Link>
                     <p className="mt-1 text-sm text-white/70">{product.price}</p>
+                    {product.soldOut ? (
+                      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-red-400">
+                        Esgotado — não será cobrado
+                      </p>
+                    ) : null}
                   </div>
                   <div className="flex items-center gap-2">
                     <button
@@ -142,6 +160,11 @@ function CartPage() {
                   {loading ? "Processando..." : "Finalizar Compra"}
                 </a>
               </div>
+              {soldOutLines.length > 0 && (
+                <p className="text-xs text-white/60">
+                  {soldOutLines.length} item(ns) esgotado(s) não entram no checkout.
+                </p>
+              )}
               {error && <p className="text-sm text-red-400">{error}</p>}
             </div>
           </>

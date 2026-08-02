@@ -1,31 +1,29 @@
 ## Objetivo
 
-Fazer o logo da Finesse Club (a imagem enviada agora) aparecer normalmente no cabeçalho e no banner da página inicial, inclusive no site publicado na Netlify.
+O site passa a ler o catálogo direto da Yampi: produtos, preços, fotos e estoque. Peça sem estoque aparece automaticamente como **ESGOTADO**; peça nova cadastrada na Yampi aparece sozinha na loja. Atualização com cache de ~5 minutos.
 
-## Diagnóstico
+## Como vai funcionar
 
-Hoje o componente do logo aponta para um arquivo importado com fallback para `/logo-fc.webp`. No site publicado, os caminhos de asset usados antes retornavam 404, e o logo aparecia quebrado. A imagem que você acabou de enviar é o logo definitivo (FC serifado branco com estrela, fundo preto).
+1. Uma função de servidor consulta a API da Yampi (`GET /v2/finesse-club/catalog/products` com `include=skus,images`) usando o Token e a Chave Secreta já salvos como segredos — as credenciais nunca vão para o navegador.
+2. O resultado é normalizado para o formato de produto já usado no site (nome, preço, preço antigo, galeria, descrição, SKU, esgotado).
+3. Estoque: SKU com quantidade 0 (ou inativo/indisponível) vira `soldOut: true` — botão desabilitado, selo ESGOTADO no card e na página do produto, e bloqueio de adicionar ao carrinho.
+4. Cache de 5 minutos em memória no servidor, para não chamar a Yampi a cada visita.
+5. Fallback: se a Yampi falhar, o site usa a lista atual de `src/lib/products.ts` como reserva, então a loja nunca fica vazia.
 
-## Plano
+## Onde entra no site
 
-1. **Adotar a imagem enviada como logo oficial**
-   - Salvar a nova imagem como o arquivo de logo do projeto, importado pelo build (versionado com hash), que é o caminho que a Netlify publica de forma confiável.
+- Home: grid de produtos vindos da Yampi (ordem da Yampi), com selo ESGOTADO quando aplicável.
+- Página do produto `/produto/$id`: dados e galeria da Yampi; detalhes manuais (condição, modelagem, tamanho, material) continuam funcionando via campos customizados/descrição da Yampi quando existirem, senão caem nos valores atuais.
+- Carrinho: valida estoque antes do checkout — item que esgotou enquanto estava no carrinho é sinalizado e removido do checkout multi-itens.
 
-2. **Componente de logo simplificado**
-   - `FinesseLogo` passa a usar apenas o arquivo importado, sem fallback para caminhos que davam 404.
-   - Como a arte tem fundo preto sólido e o site é preto, o logo se integra sem moldura visível.
+## Detalhes técnicos
 
-3. **Cabeçalho**
-   - Logo clicável levando à página inicial, mesmo tamanho atual (48px mobile / 64px desktop), alt "Finesse Club".
+- Novo `src/lib/catalog.functions.ts` com `getCatalog` (createServerFn, método GET) + `src/lib/yampi.server.ts` para fetch/normalização e cache TTL 5 min.
+- Rotas usam loader com `ensureQueryData` + `useSuspenseQuery`, mantendo SSR.
+- `src/lib/products.ts` vira apenas fallback e fonte dos dados manuais (mapeados por SKU).
+- Identificação do produto na URL passa a aceitar o id da Yampi, mantendo compatibilidade com os ids atuais 1-4 por mapeamento de SKU.
+- Reaproveita `checkout.functions.ts` para o checkout multi-itens, agora com SKUs vindos da Yampi.
 
-4. **Banner da página inicial**
-   - Logo em destaque acima do título, mesmo tamanho atual (112px mobile / 160px desktop).
+## Verificação
 
-5. **Favicon**
-   - Gerar `public/favicon.png` quadrado a partir da mesma imagem e apontar o ícone do site para ele, removendo as referências antigas que davam 404.
-
-6. **Validação**
-   - Rodar o build de produção e conferir que o arquivo do logo existe na saída e que o HTML gerado aponta para ele.
-   - Abrir a página no navegador e confirmar visualmente o logo no cabeçalho e no banner.
-
-Depois disso será preciso um novo deploy na Netlify para o site publicado refletir a mudança.
+Testar em preview: catálogo carregando da Yampi, um SKU zerado aparecendo como esgotado, checkout multi-itens funcionando, e build de produção sem erros.

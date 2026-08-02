@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
-import { products } from "@/lib/products";
+import { getCatalog, type CatalogResult } from "@/lib/catalog.functions";
 import { FinesseLogo } from "@/components/FinesseLogo";
 
 export const Route = createFileRoute("/")({
@@ -26,10 +26,12 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: async () => await getCatalog(),
   component: Index,
 });
 
 function Index() {
+  const { products } = Route.useLoaderData() as CatalogResult;
   const { add } = useCart();
   return (
     <div
@@ -83,7 +85,9 @@ function Index() {
                 <h3 className="text-[13px] font-semibold tracking-[0.15em] uppercase">{p.name}</h3>
                 <p className="mt-2 text-sm">
                   <span className="font-medium">{p.price}</span>
-                  <span className="ml-2 text-white/50 line-through">{p.oldPrice}</span>
+                  {p.oldPrice ? (
+                    <span className="ml-2 text-white/50 line-through">{p.oldPrice}</span>
+                  ) : null}
                 </p>
               </div>
               {p.soldOut ? (
