@@ -101,6 +101,11 @@ function CartPage() {
                       {product.name}
                     </Link>
                     <p className="mt-1 text-sm text-white/70">{product.price}</p>
+                    {product.soldOut ? (
+                      <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-red-400">
+                        Esgotado — não será cobrado
+                      </p>
+                    ) : null}
                   </div>
                   <div className="flex items-center gap-2">
                     <button
