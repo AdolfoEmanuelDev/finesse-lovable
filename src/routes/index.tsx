@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const { products } = Route.useLoaderData();
+  const { products } = Route.useLoaderData() as CatalogResult;
   const { add } = useCart();
   return (
     <div
