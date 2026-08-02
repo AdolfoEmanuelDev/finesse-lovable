@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SellSteps } from "@/components/SellSteps";
+
 
 export const Route = createFileRoute("/vender")({
   head: () => ({
@@ -22,7 +24,7 @@ export const Route = createFileRoute("/vender")({
   component: VenderPage,
 });
 
-const WHATS_NUMBER = "91920030501";
+const WHATS_NUMBER = "5591920030501";
 
 function VenderPage() {
   const [form, setForm] = useState({
@@ -62,16 +64,25 @@ function VenderPage() {
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <SiteHeader />
-      <main className="mx-auto max-w-2xl px-6 pb-24 pt-12 md:pt-20">
-        <h1
-          className="text-3xl md:text-5xl tracking-wide text-center"
-          style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
-        >
-          Vender sua peça
-        </h1>
-        <p className="mt-4 text-center text-sm text-white/70">
-          Preencha o formulário e nossa curadoria avaliará sua peça em até 24h.
-        </p>
+      <main className="pb-24 pt-12 md:pt-20">
+        <div className="mx-auto max-w-6xl px-6 md:px-16">
+          <h1
+            className="text-3xl md:text-5xl tracking-wide text-center"
+            style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
+          >
+            Vender sua peça
+          </h1>
+          <p className="mt-4 text-center text-sm text-white/70">
+            Preencha o formulário e nossa curadoria avaliará sua peça em até 24h.
+          </p>
+
+          <div className="mt-16">
+            <SellSteps eyebrow="Como vender sua peça" />
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-2xl px-6">
+
 
         <form onSubmit={onSubmit} className="mt-10 space-y-4">
           <div>
@@ -180,6 +191,7 @@ function VenderPage() {
             Enviar para o WhatsApp
           </button>
         </form>
+        </div>
       </main>
       <SiteFooter />
     </div>
