@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SellSteps } from "@/components/SellSteps";
 
 export const Route = createFileRoute("/como-funciona")({
   head: () => ({
@@ -81,20 +82,7 @@ function ComoFunciona() {
         </section>
 
         <section className="mt-20">
-          <h2 className="text-[11px] font-semibold tracking-[0.3em] uppercase text-white/60">
-            Como vender sua peça
-          </h2>
-          <div className="mt-6 grid gap-6 md:grid-cols-3 lg:grid-cols-5">
-            {vender.map((s) => (
-              <div key={s.n} className="border border-white/15 p-6">
-                <div className="text-white/40 text-sm">{s.n}</div>
-                <h3 className="mt-2 text-base font-semibold uppercase tracking-[0.15em]">
-                  {s.title}
-                </h3>
-                <p className="mt-3 text-sm text-white/75">{s.desc}</p>
-              </div>
-            ))}
-          </div>
+          <SellSteps eyebrow="Como vender sua peça" />
         </section>
       </main>
       <SiteFooter />
