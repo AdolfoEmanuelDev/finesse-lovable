@@ -61,9 +61,10 @@ function Autenticacao() {
         </h1>
         <p className="mt-4 max-w-2xl text-white/70">
           Nenhuma peça entra no catálogo sem passar por verificação. Trabalhamos com{" "}
-          <strong className="text-white">Auth.br</strong> e{" "}
-          <strong className="text-white">LegitApp</strong>, além da autenticação manual feita pela
-          equipe Finesse Club.
+          <strong className="text-white">Auth.br</strong>,{" "}
+          <strong className="text-white">LegitApp</strong> e{" "}
+          <strong className="text-white">LegitGrails</strong>, além da autenticação manual feita
+          pela equipe Finesse Club.
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
