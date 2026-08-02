@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SellSteps } from "@/components/SellSteps";
+
 
 export const Route = createFileRoute("/vender")({
   head: () => ({
@@ -22,7 +24,7 @@ export const Route = createFileRoute("/vender")({
   component: VenderPage,
 });
 
-const WHATS_NUMBER = "91920030501";
+const WHATS_NUMBER = "5591920030501";
 
 function VenderPage() {
   const [form, setForm] = useState({
