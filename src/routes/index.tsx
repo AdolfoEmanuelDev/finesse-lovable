@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
-import { products } from "@/lib/products";
+import { getCatalog } from "@/lib/catalog.functions";
 import { FinesseLogo } from "@/components/FinesseLogo";
 
 export const Route = createFileRoute("/")({
