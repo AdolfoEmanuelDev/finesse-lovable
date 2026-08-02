@@ -191,6 +191,7 @@ function VenderPage() {
             Enviar para o WhatsApp
           </button>
         </form>
+        </div>
       </main>
       <SiteFooter />
     </div>
