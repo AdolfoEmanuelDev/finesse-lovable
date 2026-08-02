@@ -4,11 +4,13 @@ import { ShieldCheck } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useCart } from "@/lib/cart";
-import { getProduct, FINESSE_WHATSAPP } from "@/lib/products";
+import { FINESSE_WHATSAPP, type Product } from "@/lib/products";
+import { getCatalog } from "@/lib/catalog.functions";
+import { findProduct } from "@/lib/catalog";
 
 export const Route = createFileRoute("/produto/$id")({
-  head: ({ params }) => {
-    const p = getProduct(Number(params.id));
+  head: ({ loaderData }) => {
+    const p = loaderData as Product | undefined;
     const title = p ? `${p.name} — Finesse Club` : "Produto — Finesse Club";
     const desc = p
       ? `${p.name} por ${p.price}. Autenticidade verificada. Frete para todo o Brasil.`
@@ -19,12 +21,13 @@ export const Route = createFileRoute("/produto/$id")({
         { name: "description", content: desc },
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
-        ...(p ? [{ property: "og:image", content: p.image }] : []),
+        ...(p?.image ? [{ property: "og:image", content: p.image }] : []),
       ],
     };
   },
-  loader: ({ params }) => {
-    const p = getProduct(Number(params.id));
+  loader: async ({ params }) => {
+    const { products } = await getCatalog();
+    const p = findProduct(products, params.id);
     if (!p) throw notFound();
     return p;
   },
@@ -44,7 +47,8 @@ export const Route = createFileRoute("/produto/$id")({
 });
 
 function ProductPage() {
-  const product = Route.useLoaderData() as NonNullable<ReturnType<typeof getProduct>>;
+  const product = Route.useLoaderData() as Product;
+
   const { add } = useCart();
   const [active, setActive] = useState(0);
 
