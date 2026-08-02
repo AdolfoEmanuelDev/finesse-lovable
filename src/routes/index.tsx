@@ -85,7 +85,9 @@ function Index() {
                 <h3 className="text-[13px] font-semibold tracking-[0.15em] uppercase">{p.name}</h3>
                 <p className="mt-2 text-sm">
                   <span className="font-medium">{p.price}</span>
-                  <span className="ml-2 text-white/50 line-through">{p.oldPrice}</span>
+                  {p.oldPrice ? (
+                    <span className="ml-2 text-white/50 line-through">{p.oldPrice}</span>
+                  ) : null}
                 </p>
               </div>
               {p.soldOut ? (
