@@ -160,6 +160,11 @@ function CartPage() {
                   {loading ? "Processando..." : "Finalizar Compra"}
                 </a>
               </div>
+              {soldOutLines.length > 0 && (
+                <p className="text-xs text-white/60">
+                  {soldOutLines.length} item(ns) esgotado(s) não entram no checkout.
+                </p>
+              )}
               {error && <p className="text-sm text-red-400">{error}</p>}
             </div>
           </>
