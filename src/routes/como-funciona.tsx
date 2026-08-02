@@ -41,13 +41,8 @@ const comprar = [
   },
 ];
 
-const vender = [
-  { n: "01", title: "Envio de fotos", desc: "Envie fotos da peça pelo WhatsApp." },
-  { n: "02", title: "Análise em 24h", desc: "Nossa curadoria avalia e dá uma resposta em até 24h." },
-  { n: "03", title: "Verificação", desc: "Recebemos a peça e verificamos autenticidade e estado." },
-  { n: "04", title: "Definição de modelo", desc: "Combinamos consignação ou compra direta." },
-  { n: "05", title: "Pagamento", desc: "Pagamos via PIX após a venda ou no fechamento do acordo." },
-];
+
+
 
 function ComoFunciona() {
   return (
@@ -56,7 +51,7 @@ function ComoFunciona() {
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <SiteHeader />
-      <main className="mx-auto max-w-5xl px-6 pb-24 pt-12 md:px-16 md:pt-20">
+      <main className="mx-auto max-w-6xl px-6 pb-24 pt-12 md:px-16 md:pt-20">
         <h1
           className="text-3xl md:text-5xl tracking-wide text-center"
           style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
