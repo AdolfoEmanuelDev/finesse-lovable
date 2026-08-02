@@ -33,8 +33,8 @@ const etapas = [
     desc: "Serviço especializado em autenticação de peças de luxo e streetwear no Brasil.",
   },
   {
-    title: "LegitApp",
-    desc: "Plataforma internacional de legit check, usada como segunda camada de verificação.",
+    title: "LegitApp e LegitGrails",
+    desc: "Plataformas internacionais de legit check usadas como segunda camada de verificação.",
   },
   {
     title: "Curadoria manual Finesse Club",
