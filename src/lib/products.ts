@@ -126,6 +126,7 @@ export const products: Product[] = [
       material: "Lã e algodão",
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
+    sku: "HPTP9SNLE",
     soldOut: true,
   },
   {
@@ -157,7 +158,100 @@ export const products: Product[] = [
     buyNowUrl: "https://seguro.finesseclub.com.br/r/540WADO1SJ",
     sku: "8VL8MU4LJ",
   },
+  {
+    id: 45601744,
+    name: "Brooksfield Branca",
+    price: "R$ 115,00",
+    oldPrice: "",
+    image: img(
+      "https://images.yampi.me/assets/stores/finesse-club/uploads/images/brooksfield-branca-6a555aa923269-large.png",
+    ),
+    gallery: [
+      img(
+        "https://images.yampi.me/assets/stores/finesse-club/uploads/images/brooksfield-branca-6a555aa923269-large.png",
+      ),
+    ],
+    description: ["Peça autenticada pela curadoria Finesse Club."],
+    buyNowUrl: "https://seguro.finesseclub.com.br/r/1KB4WO1C7D",
+    sku: "RK4SRNJLC",
+  },
+  {
+    id: 45601752,
+    name: "Brooksfield Azul",
+    price: "R$ 115,00",
+    oldPrice: "",
+    image: img(
+      "https://images.yampi.me/assets/stores/finesse-club/uploads/images/brooksfield-azul-6a555a9de0e1a-large.png",
+    ),
+    gallery: [
+      img(
+        "https://images.yampi.me/assets/stores/finesse-club/uploads/images/brooksfield-azul-6a555a9de0e1a-large.png",
+      ),
+    ],
+    description: ["Peça autenticada pela curadoria Finesse Club."],
+    buyNowUrl: "https://seguro.finesseclub.com.br/r/KGI02MJHUY",
+    sku: "GXRNRLK8G",
+  },
+  {
+    id: 45771063,
+    name: "Camiseta Polo Ralph Lauren Classic Black",
+    price: "R$ 240,00",
+    oldPrice: "",
+    image: img(
+      "https://images.yampi.me/assets/stores/finesse-club/uploads/images/camiseta-polo-ralph-lauren-classic-black-6a6fc351d75e1-large.jpeg",
+    ),
+    gallery: [
+      img(
+        "https://images.yampi.me/assets/stores/finesse-club/uploads/images/camiseta-polo-ralph-lauren-classic-black-6a6fc351d75e1-large.jpeg",
+      ),
+    ],
+    description: [
+      "Preço loja R$ 969.",
+      "Seminovo — excelente estado.",
+      "Regular fit.",
+      "M (equivale a M BR).",
+      "100% Algodão.",
+      "Acompanha certificado de autenticidade @authbr.",
+    ],
+    details: {
+      condicao: "Seminovo — Excelente estado",
+      modelagem: "Regular fit",
+      tamanho: "M (equivale a M BR)",
+      material: "100% Algodão",
+    },
+    buyNowUrl: "https://seguro.finesseclub.com.br/r/BUF25P8436",
+    sku: "PDM7C9JNC",
+  },
+  {
+    id: 45771070,
+    name: "Short Brooksfield Swim Blue",
+    price: "R$ 235,00",
+    oldPrice: "",
+    image: img(
+      "https://images.yampi.me/assets/stores/finesse-club/uploads/images/short-brooksfield-swim-blue-6a6fc46404e06-large.jpeg",
+    ),
+    gallery: [
+      img(
+        "https://images.yampi.me/assets/stores/finesse-club/uploads/images/short-brooksfield-swim-blue-6a6fc46404e06-large.jpeg",
+      ),
+    ],
+    description: [
+      "Preço loja R$ 399,99.",
+      "Seminovo — excelente estado.",
+      "Regular fit.",
+      "P/M (veste P e M BR).",
+    ],
+    details: {
+      condicao: "Seminovo — Excelente estado",
+      modelagem: "Regular fit",
+      tamanho: "P/M (veste P e M BR)",
+      material: "—",
+    },
+    buyNowUrl: "https://seguro.finesseclub.com.br/r/RBOE7UCYP7",
+    sku: "494FJBR8M",
+  },
 ];
+
 
 export const priceToCents = (p: string) =>
   Math.round(parseFloat(p.replace(/[^\d,]/g, "").replace(",", ".")) * 100);
