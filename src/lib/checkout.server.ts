@@ -73,8 +73,7 @@ export async function createCheckout(items: CartItem[]): Promise<{ url?: string;
     if (parts.length === 0) return localCheckout(items);
     if (missing.length > 0) {
       const fallback = localCheckout(items.filter((i) => missing.includes(i.sku)));
-      const extra = fallback.url ? tokenFromUrl(fallback.url) : undefined;
-      if (extra) parts.push(...fallback.url!.split("/r/")[1].split(","));
+      if (fallback.url) parts.push(...fallback.url.split("/r/")[1].split(","));
     }
     return { url: buildCheckoutUrl(parts) };
   } catch (err) {
