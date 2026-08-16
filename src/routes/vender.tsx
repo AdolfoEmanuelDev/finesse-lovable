@@ -221,6 +221,12 @@ function VenderPage() {
             </p>
           </div>
 
+          {formError && (
+            <p role="alert" className="text-sm text-red-400">
+              {formError}
+            </p>
+          )}
+
           <button
             type="submit"
             className="mt-4 w-full bg-white py-4 text-[12px] font-semibold tracking-[0.25em] uppercase text-black transition-opacity hover:opacity-90"
