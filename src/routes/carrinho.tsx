@@ -56,10 +56,23 @@ function CartPage() {
         return;
       }
       setLoading(false);
+      // Only ever navigate to the official checkout host, and never leave the
+      // new tab with a reference back to this page (reverse tabnabbing).
+      const safeUrl = new URL(url);
+      if (safeUrl.protocol !== "https:" || safeUrl.hostname !== "seguro.finesseclub.com.br") {
+        checkoutWindow?.close();
+        setError("Destino de checkout inválido");
+        return;
+      }
       if (checkoutWindow && !checkoutWindow.closed) {
-        checkoutWindow.location.href = url;
+        try {
+          checkoutWindow.opener = null;
+        } catch {
+          /* ignore */
+        }
+        checkoutWindow.location.href = safeUrl.toString();
       } else {
-        window.open(url, "_blank");
+        window.open(safeUrl.toString(), "_blank", "noopener,noreferrer");
       }
     } catch (e: any) {
       checkoutWindow?.close();
