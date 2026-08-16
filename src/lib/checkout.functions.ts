@@ -1,15 +1,28 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createCheckout, type CartItem } from "./checkout.server";
+import { z } from "zod";
+import { createCheckout } from "./checkout.server";
+
+const MAX_LINES = 20;
+const MAX_QTY = 10;
+
+// SKUs are alphanumeric codes; anything else is rejected before it reaches Yampi.
+const cartSchema = z.object({
+  items: z
+    .array(
+      z.object({
+        sku: z
+          .string()
+          .trim()
+          .min(1)
+          .max(64)
+          .regex(/^[A-Za-z0-9._-]+$/, "SKU inválido"),
+        quantity: z.coerce.number().int().min(1).max(MAX_QTY),
+      }),
+    )
+    .min(1)
+    .max(MAX_LINES),
+});
 
 export const createYampiCheckout = createServerFn({ method: "POST" })
-  .inputValidator((input: { items: CartItem[] }) => {
-    if (!input || !Array.isArray(input.items) || input.items.length === 0) {
-      throw new Error("items é obrigatório");
-    }
-    const items = input.items
-      .filter((i) => i && typeof i.sku === "string" && i.sku.length > 0)
-      .map((i) => ({ sku: String(i.sku), quantity: Math.max(1, Number(i.quantity) || 1) }));
-    if (items.length === 0) throw new Error("nenhum sku válido");
-    return { items };
-  })
+  .inputValidator((input: unknown) => cartSchema.parse(input))
   .handler(async ({ data }) => await createCheckout(data.items));
