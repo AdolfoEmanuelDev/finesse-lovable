@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { z } from "zod";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SellSteps } from "@/components/SellSteps";
@@ -26,6 +27,34 @@ export const Route = createFileRoute("/vender")({
 
 const WHATS_NUMBER = "5591920030501";
 
+const TIPOS = ["Camiseta", "Calçados", "Shorts", "Acessório", "Hoodies"] as const;
+const CONDICOES = ["Novo", "Seminovo", "Bom estado"] as const;
+
+// Remove control characters so nothing can forge extra lines in the message.
+const clean = (v: string) =>
+  v
+    .replace(/[\u0000-\u001F\u007F]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const sellSchema = z.object({
+  nome: z.string().transform(clean).pipe(z.string().min(2, "Informe seu nome").max(100)),
+  whats: z
+    .string()
+    .transform(clean)
+    .pipe(
+      z
+        .string()
+        .min(8, "Informe um WhatsApp válido")
+        .max(20)
+        .regex(/^[0-9()+\-\s]+$/, "WhatsApp deve conter apenas números"),
+    ),
+  marca: z.string().transform(clean).pipe(z.string().min(2, "Informe a marca").max(80)),
+  tipo: z.enum(TIPOS),
+  condicao: z.enum(CONDICOES),
+  valor: z.string().transform(clean).pipe(z.string().min(1, "Informe o valor").max(20)),
+});
+
 function VenderPage() {
   const [form, setForm] = useState({
     nome: "",
@@ -35,6 +64,7 @@ function VenderPage() {
     condicao: "Seminovo",
     valor: "",
   });
+  const [formError, setFormError] = useState<string | null>(null);
 
   function update<K extends keyof typeof form>(k: K, v: (typeof form)[K]) {
     setForm((f) => ({ ...f, [k]: v }));
@@ -42,14 +72,21 @@ function VenderPage() {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const parsed = sellSchema.safeParse(form);
+    if (!parsed.success) {
+      setFormError(parsed.error.issues[0]?.message ?? "Verifique os dados do formulário");
+      return;
+    }
+    setFormError(null);
+    const d = parsed.data;
     const lines = [
       "Olá Finesse Club, quero vender uma peça:",
-      `Nome: ${form.nome}`,
-      `WhatsApp: ${form.whats}`,
-      `Marca: ${form.marca}`,
-      `Tipo: ${form.tipo}`,
-      `Condição: ${form.condicao}`,
-      `Valor desejado: ${form.valor}`,
+      `Nome: ${d.nome}`,
+      `WhatsApp: ${d.whats}`,
+      `Marca: ${d.marca}`,
+      `Tipo: ${d.tipo}`,
+      `Condição: ${d.condicao}`,
+      `Valor desejado: ${d.valor}`,
     ];
     const url = `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
     window.location.href = url;
@@ -183,6 +220,12 @@ function VenderPage() {
               Você enviará as fotos pelo WhatsApp ao confirmar o envio.
             </p>
           </div>
+
+          {formError && (
+            <p role="alert" className="text-sm text-red-400">
+              {formError}
+            </p>
+          )}
 
           <button
             type="submit"
