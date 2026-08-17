@@ -195,7 +195,7 @@ export const products: Product[] = [
   {
     id: 45771063,
     name: "Camiseta Polo Ralph Lauren Classic Black",
-    price: "R$ 240,00",
+    price: "R$ 280,00",
     oldPrice: "",
     image: img(
       "https://images.yampi.me/assets/stores/finesse-club/uploads/images/camiseta-polo-ralph-lauren-classic-black-6a6fc351d75e1-large.jpeg",
