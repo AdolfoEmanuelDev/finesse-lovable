@@ -41,7 +41,7 @@ function mapProduct(raw: any): Product | null {
   const gallery = pickImages(raw);
   const priceSale = Number(sku?.price_sale ?? 0);
   const priceDiscount = Number(sku?.price_discount ?? 0);
-  const current = priceDiscount > 0 ? priceDiscount : priceSale;
+  const current = priceSale > 0 ? priceSale : priceDiscount;
   if (!raw?.id || !current) return null;
 
   const outOfStock =
@@ -61,7 +61,7 @@ function mapProduct(raw: any): Product | null {
     id: Number(raw.id),
     name: String(raw.name ?? "").replace(/\s+/g, " ").trim(),
     price: formatBRL(current),
-    oldPrice: priceDiscount > 0 && priceSale > priceDiscount ? formatBRL(priceSale) : "",
+    oldPrice: "",
     image: gallery[0] ?? "",
     gallery: gallery.length ? gallery : [""],
     description,
