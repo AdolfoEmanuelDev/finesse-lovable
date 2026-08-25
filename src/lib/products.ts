@@ -39,6 +39,7 @@ export const products: Product[] = [
     id: 1,
     name: "Diesel® T-just G15 Black",
     price: "R$ 555,00",
+    oldPrice: "R$ 650,00",
     image: img(
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/tjust-detelhe1-resized-1766999555080.jpeg?width=8000&height=8000&resize=contain",
     ),
