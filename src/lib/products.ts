@@ -231,8 +231,7 @@ export const products: Product[] = [
       ),
     ],
     description: [
-      "185,90
-",
+      "185,90\n",
       "Seminovo — excelente estado.",
       "Regular fit.",
       "P/M (veste P e M BR).",
