@@ -126,7 +126,7 @@ export const products: Product[] = [
       tamanho: "S (equivale a P BR)",
       material: "Lã e algodão",
     },
-    buyNowUrl: "https://seguro.finesseclub.com.br/r/1YMS8P7GFD",
+    buyNowUrl: "https://seguro.finesseclub.com.br/r/AVRSF80NK8",
     sku: "HPTP9SNLE",
     soldOut: true,
   },
