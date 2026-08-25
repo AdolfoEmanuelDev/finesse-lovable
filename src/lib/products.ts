@@ -98,6 +98,7 @@ export const products: Product[] = [
     },
     buyNowUrl: "https://seguro.finesseclub.com.br/r/MPMGCJXPW0",
     sku: "4GDZSPUQP",
+    soldOut: true,
   },
   {
     id: 3,
