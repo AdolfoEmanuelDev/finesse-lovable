@@ -231,7 +231,8 @@ export const products: Product[] = [
       ),
     ],
     description: [
-      "Preço loja R$ 399,99.",
+      "185,90
+",
       "Seminovo — excelente estado.",
       "Regular fit.",
       "P/M (veste P e M BR).",
