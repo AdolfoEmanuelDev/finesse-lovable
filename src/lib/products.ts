@@ -2,7 +2,7 @@ export type Product = {
   id: number;
   name: string;
   price: string;
-  oldPrice: string;
+  oldPrice?: string;
   image: string;
   gallery: string[];
   description: string[];
@@ -39,7 +39,6 @@ export const products: Product[] = [
     id: 1,
     name: "Diesel® T-just G15 Black",
     price: "R$ 555,00",
-    oldPrice: "R$ 650,00",
     image: img(
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/tjust-detelhe1-resized-1766999555080.jpeg?width=8000&height=8000&resize=contain",
     ),
@@ -74,7 +73,6 @@ export const products: Product[] = [
     id: 2,
     name: "Diesel® umtee Black",
     price: "R$ 199,90",
-    oldPrice: "R$ 250,00",
     image: img(
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-2-resized-1769631761756.jpg?width=8000&height=8000&resize=contain",
     ),
@@ -103,8 +101,7 @@ export const products: Product[] = [
   {
     id: 3,
     name: "Suéter Polo Ralph Lauren®",
-    price: "R$ 780,00",
-    oldPrice: "R$ 1.250,00",
+    price: "R$ 950,00",
     image: img(
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-3-1769631761346.jpg?width=8000&height=8000&resize=contain",
     ),
@@ -133,8 +130,7 @@ export const products: Product[] = [
   {
     id: 4,
     name: "Lacoste® Pima Cotton",
-    price: "R$ 185,00",
-    oldPrice: "R$ 245,00",
+    price: "R$ 200,00",
     image: img(
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-4-resized-1769631761761.jpg?width=8000&height=8000&resize=contain",
     ),
@@ -163,7 +159,6 @@ export const products: Product[] = [
     id: 45601744,
     name: "Brooksfield Branca",
     price: "R$ 115,00",
-    oldPrice: "",
     image: img(
       "https://images.yampi.me/assets/stores/finesse-club/uploads/images/brooksfield-branca-6a555aa923269-large.png",
     ),
@@ -180,7 +175,6 @@ export const products: Product[] = [
     id: 45601752,
     name: "Brooksfield Azul",
     price: "R$ 115,00",
-    oldPrice: "",
     image: img(
       "https://images.yampi.me/assets/stores/finesse-club/uploads/images/brooksfield-azul-6a555a9de0e1a-large.png",
     ),
@@ -197,7 +191,6 @@ export const products: Product[] = [
     id: 45771063,
     name: "Camiseta Polo Ralph Lauren Classic Black",
     price: "R$ 280,00",
-    oldPrice: "",
     image: img(
       "https://images.yampi.me/assets/stores/finesse-club/uploads/images/camiseta-polo-ralph-lauren-classic-black-6a6fc351d75e1-large.jpeg",
     ),
@@ -227,7 +220,6 @@ export const products: Product[] = [
     id: 45771070,
     name: "Short Brooksfield Swim Blue",
     price: "R$ 235,00",
-    oldPrice: "",
     image: img(
       "https://images.yampi.me/assets/stores/finesse-club/uploads/images/short-brooksfield-swim-blue-6a6fc46404e06-large.jpeg",
     ),
