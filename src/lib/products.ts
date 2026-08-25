@@ -131,6 +131,7 @@ export const products: Product[] = [
     id: 4,
     name: "Lacoste® Pima Cotton",
     price: "R$ 200,00",
+    oldPrice: "R$ 245,00",
     image: img(
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-4-resized-1769631761761.jpg?width=8000&height=8000&resize=contain",
     ),
