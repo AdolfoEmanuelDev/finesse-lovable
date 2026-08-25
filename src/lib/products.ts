@@ -103,7 +103,7 @@ export const products: Product[] = [
   {
     id: 3,
     name: "Suéter Polo Ralph Lauren®",
-    price: "R$ 950,00",
+    price: "R$ 780,00",
     oldPrice: "R$ 1.250,00",
     image: img(
       "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/e0354d74-faf5-4977-8775-aa3ee0f7ed6c/produto-3-1769631761346.jpg?width=8000&height=8000&resize=contain",
