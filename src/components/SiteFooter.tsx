@@ -1,46 +1,68 @@
-import { Lock, ShieldCheck, Truck, CreditCard } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { FINESSE_VIP_GROUP } from "@/lib/products";
 
+const TRUST = [
+  "Pagamento seguro",
+  "Peças 100% autenticadas",
+  "Envio para todo o Brasil",
+  "12x no cartão ou PIX",
+];
+
+const LINKS = [
+  { to: "/como-funciona", label: "Como funciona" },
+  { to: "/autenticacao", label: "Autenticação" },
+  { to: "/vender", label: "Vender" },
+  { to: "/carrinho", label: "Carrinho" },
+  { to: "/termos", label: "Termos" },
+] as const;
+
 export function SiteFooter() {
-  const items = [
-    { Icon: Lock, label: "Pagamento seguro" },
-    { Icon: ShieldCheck, label: "Peças 100% autenticadas" },
-    { Icon: Truck, label: "Envio para todo o Brasil" },
-    { Icon: CreditCard, label: "12x no cartão ou PIX" },
-  ];
   return (
-    <footer className="border-t border-white/10 bg-black text-white">
-      {/* VIP banner */}
-      <section className="border-b border-white/10 px-6 py-12 text-center md:px-16 md:py-16">
+    <footer className="bg-black text-white">
+      <section className="border-b border-white/10 px-5 py-14 md:px-10 md:py-20">
         <h2
-          className="text-2xl md:text-4xl tracking-wide"
-          style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
+          className="max-w-3xl font-black uppercase leading-[0.95] tracking-[-0.01em]"
+          style={{ fontSize: "clamp(1.75rem, 5vw, 4rem)" }}
         >
-          Entre no grupo VIP e veja os próximos drops antes de todo mundo.
+          Entre no grupo VIP
         </h2>
+        <p className="mt-4 max-w-md text-[11px] uppercase tracking-[0.2em] text-white/50">
+          Veja os próximos drops antes de todo mundo.
+        </p>
         <a
           href={FINESSE_VIP_GROUP}
           target="_blank"
           rel="noreferrer"
-          className="mt-6 inline-block border border-white bg-white px-8 py-3 text-[11px] font-semibold tracking-[0.25em] uppercase text-black transition-opacity hover:opacity-90"
+          className="mt-8 inline-flex items-center gap-3 border border-white bg-white px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-black transition-colors hover:bg-transparent hover:text-white"
         >
-          Entrar no grupo
+          Entrar no grupo <span aria-hidden>→</span>
         </a>
       </section>
 
-      {/* Trust signals */}
-      <section className="grid grid-cols-2 gap-6 px-6 py-10 md:grid-cols-4 md:px-16">
-        {items.map(({ Icon, label }) => (
-          <div key={label} className="flex items-center gap-3">
-            <Icon className="h-5 w-5 shrink-0" strokeWidth={1.5} />
-            <span className="text-[11px] font-semibold tracking-[0.2em] uppercase">
-              {label}
-            </span>
-          </div>
+      <section className="grid grid-cols-2 gap-y-4 border-b border-white/10 px-5 py-8 md:grid-cols-4 md:px-10">
+        {TRUST.map((label) => (
+          <span
+            key={label}
+            className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70"
+          >
+            {label}
+          </span>
         ))}
       </section>
 
-      <div className="border-t border-white/10 px-6 py-6 text-center text-[11px] tracking-[0.2em] uppercase text-white/50 md:px-16">
+      <section className="flex flex-wrap gap-x-6 gap-y-3 px-5 py-8 md:px-10">
+        {LINKS.map((l) => (
+          <Link
+            key={l.to}
+            to={l.to}
+            className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-white"
+          >
+            {l.label}
+          </Link>
+        ))}
+      </section>
+
+      <div className="border-t border-white/10 px-5 py-6 text-[10px] uppercase tracking-[0.2em] text-white/40 md:px-10">
         © {new Date().getFullYear()} Finesse Club — Curadoria de luxo masculino
       </div>
     </footer>
