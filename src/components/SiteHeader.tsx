@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, ShoppingCart, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { FinesseLogo } from "@/components/FinesseLogo";
 
 const NAV_LINKS = [
+  { to: "/", label: "HOME" },
   { to: "/como-funciona", label: "COMO FUNCIONA" },
   { to: "/autenticacao", label: "AUTENTICAÇÃO" },
   { to: "/vender", label: "VENDER" },
@@ -25,13 +25,9 @@ export function SiteHeader() {
       const y = Math.max(0, window.scrollY);
       const delta = y - lastY.current;
       setScrolled(y > 40);
-      if (y < 120) {
-        setHidden(false);
-      } else if (delta > 8) {
-        setHidden(true);
-      } else if (delta < -8) {
-        setHidden(false);
-      }
+      if (y < 120) setHidden(false);
+      else if (delta > 8) setHidden(true);
+      else if (delta < -8) setHidden(false);
       lastY.current = y;
       ticking.current = false;
     };
@@ -52,60 +48,57 @@ export function SiteHeader() {
   return (
     <header
       className={[
-        "sticky top-0 z-50",
-        "transition-[transform,background-color,backdrop-filter] duration-300 ease-out will-change-transform",
+        "fixed inset-x-0 top-0 z-50",
+        "transition-[transform,background-color] duration-300 ease-out will-change-transform",
         hidden && !menuOpen ? "-translate-y-full" : "translate-y-0",
-        scrolled || menuOpen ? "bg-black/90 backdrop-blur-md" : "bg-transparent",
+        scrolled || menuOpen ? "bg-black" : "bg-transparent",
       ].join(" ")}
     >
-      <div className="flex items-center justify-between px-6 py-6 md:px-16 md:py-8">
-        <Link to="/" aria-label="Finesse Club — Início" className="flex items-center">
-          <FinesseLogo className="h-12 w-12 text-white md:h-16 md:w-16" />
-        </Link>
-        <nav className="flex items-center gap-4 text-[11px] tracking-[0.2em] text-white md:gap-8">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-5 py-4 md:px-10">
+        {/* Left nav */}
+        <nav className="hidden min-w-0 items-center gap-6 text-[10px] font-semibold uppercase tracking-[0.22em] text-white md:flex">
           {NAV_LINKS.map((l) => (
-            <Link key={l.to} to={l.to} className="hidden md:inline hover:opacity-70 transition-opacity">
+            <Link key={l.to} to={l.to} className="transition-opacity hover:opacity-60">
               {l.label}
             </Link>
           ))}
-          <Link
-            to="/carrinho"
-            aria-label={`Carrinho${count > 0 ? ` com ${count} itens` : ""}`}
-            className="relative flex items-center gap-2 hover:opacity-70 transition-opacity"
-          >
-            <ShoppingCart className="h-4 w-4" strokeWidth={1.5} />
-            <span className="hidden sm:inline">CARRINHO</span>
-            {count > 0 && (
-              <span className="absolute -right-3 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[9px] font-semibold text-black">
-                {count}
-              </span>
-            )}
-          </Link>
-          <button
-            type="button"
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={menuOpen}
-            className="md:hidden -mr-1 p-1 hover:opacity-70 transition-opacity"
-          >
-            {menuOpen ? (
-              <X className="h-5 w-5" strokeWidth={1.5} />
-            ) : (
-              <Menu className="h-5 w-5" strokeWidth={1.5} />
-            )}
-          </button>
         </nav>
+
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={menuOpen}
+          className="justify-self-start text-[10px] font-semibold uppercase tracking-[0.22em] text-white md:hidden"
+        >
+          {menuOpen ? "FECHAR" : "MENU"}
+        </button>
+
+        {/* Center logo */}
+        <Link to="/" aria-label="Finesse Club — Início" className="justify-self-center">
+          <FinesseLogo className="h-8 w-8 text-white md:h-10 md:w-10" />
+        </Link>
+
+        {/* Cart */}
+        <Link
+          to="/carrinho"
+          className="justify-self-end text-[10px] font-semibold uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-60"
+          aria-label={`Carrinho com ${count} itens`}
+        >
+          Carrinho ({count})
+        </Link>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-black/95 backdrop-blur-md">
-          <nav className="flex flex-col px-6 py-4 text-[11px] tracking-[0.2em] text-white">
+        <div className="fixed inset-0 top-[56px] z-40 bg-black md:hidden">
+          <nav className="flex flex-col px-5 py-6">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
                 onClick={() => setMenuOpen(false)}
-                className="py-3 hover:opacity-70 transition-opacity"
+                className="border-b border-white/10 py-5 text-sm font-semibold uppercase tracking-[0.22em] text-white"
               >
                 {l.label}
               </Link>

@@ -51,7 +51,7 @@ function ComoFunciona() {
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-6 pb-24 pt-12 md:px-16 md:pt-20">
+      <main className="mx-auto max-w-6xl px-6 pb-24 pt-28 md:px-16 md:pt-36">
         <h1
           className="text-3xl md:text-5xl tracking-wide text-center"
           style={{ fontFamily: "'Montserrat', sans-serif", fontStyle: "italic" }}
