@@ -84,7 +84,7 @@ function CartPage() {
   return (
     <div className="min-h-screen bg-black text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       <SiteHeader />
-      <main className="mx-auto max-w-4xl px-6 pb-24 pt-8 md:pt-16">
+      <main className="mx-auto max-w-4xl px-6 pb-24 pt-28 md:pt-36">
         <h1 className="text-2xl font-bold tracking-wide uppercase">Seu Carrinho</h1>
 
         {lines.length === 0 ? (

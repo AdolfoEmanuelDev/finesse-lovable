@@ -17,7 +17,7 @@ function TermosPage() {
   return (
     <div className="min-h-screen bg-black text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       <SiteHeader />
-      <main className="mx-auto max-w-3xl px-6 pb-24 pt-8 md:pt-16">
+      <main className="mx-auto max-w-3xl px-6 pb-24 pt-28 md:pt-36">
         <h1 className="text-3xl font-bold tracking-wide">TERMOS E CONDIÇÕES</h1>
         <p className="mt-6 text-sm text-white/80">
           Bem-vindo a Finesse Club. Ao acessar e usar este site, você concorda com os seguintes termos:

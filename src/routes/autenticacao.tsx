@@ -49,7 +49,7 @@ function Autenticacao() {
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <SiteHeader />
-      <main className="mx-auto max-w-4xl px-6 pb-24 pt-8 md:pt-16">
+      <main className="mx-auto max-w-4xl px-6 pb-24 pt-28 md:pt-36">
         <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-white/50">
           Confiança
         </p>

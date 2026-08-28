@@ -101,7 +101,7 @@ function VenderPage() {
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <SiteHeader />
-      <main className="pb-24 pt-12 md:pt-20">
+      <main className="pb-24 pt-28 md:pt-36">
         <div className="mx-auto max-w-6xl px-6 md:px-16">
           <h1
             className="text-3xl md:text-5xl tracking-wide text-center"
